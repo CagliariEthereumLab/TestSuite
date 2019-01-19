@@ -1,0 +1,3 @@
+[submodule "contracts/RSVP"]
+	path = contracts/RSVP
+	url = https://github.com/CagliariEthereumLab/RSVP.git
