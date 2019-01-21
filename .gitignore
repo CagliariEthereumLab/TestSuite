@@ -4,3 +4,4 @@ json/*
 .env*
 package-lock.json
 tmp
+./contracts/RSVP/build/*
