@@ -122,5 +122,23 @@ module.exports = {
         return Contract;
     },
 
+    getContractByAddress: function (artifact, from, contract_address) {
+        var self = this;
+
+        var Contract = contract(artifact);
+        Contract.setProvider(self.web3.currentProvider);
+        //fix for we web3 1.0
+        if (typeof Contract.currentProvider.sendAsync !== "function") {
+            Contract.currentProvider.sendAsync = function () {
+                return Contract.currentProvider.send.apply(
+                    Contract.currentProvider,
+                    arguments
+                );
+            };
+        }
+        Contract.defaults({from: from, gas: '30000000'});
+        return Contract.at(contract_address);
+    },
+
 };
 
